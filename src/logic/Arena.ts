@@ -1,7 +1,7 @@
 import { Nut } from "./Nut"
 
 export class Arena {
-    private arena: (Nut | undefined)[][] = [[], [], [], [], [], [], []];
+    private arena: (Nut)[][] = [[], [], [], [], [], [], []];
     private columnSize = [0, 0, 0, 0, 0, 0, 0]
     push = (nut: Nut, index: number) => {
         if(this.columnSize[index] < 6)
@@ -17,9 +17,9 @@ export class Arena {
     columnIsFull = (index: number) => !(this.columnSize[index] < 6)
 
     constructor() {
-        for(let i = 0; i < 7; i++){
-            for(let j = 6; j < 6; j++){
-                this.arena[i].push(undefined)
+        for(let i = 0; i < 7; i++) {
+            for(let j = 0; j < 6; j++){
+                this.arena[i].push(Nut.EMPTY)
             }
         }
     }

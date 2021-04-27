@@ -1,4 +1,5 @@
 export enum Nut {
     PLAYER_1,
-    PLAYER_2
+    PLAYER_2,
+    EMPTY
 }

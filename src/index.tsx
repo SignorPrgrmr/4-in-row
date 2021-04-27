@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
+import Arena from "./components/Arena";
+import 'bootstrap/dist/css/bootstrap.css'
+import './resources/style.css'
 
 ReactDOM.render(
   <React.StrictMode>
-      <h1>Hello world!</h1>
+      <Arena/>
   </React.StrictMode>,
   document.getElementById('root')
 );

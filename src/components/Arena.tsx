@@ -10,7 +10,20 @@ class Arena extends Component {
         hoveredColumn: -1,
         isPlaying: true,
         player1: 21,
-        player2: 21
+        player2: 21,
+        winner: undefined
+    }
+
+    playAgain = () => {
+        this.setState({
+            arena: new GameArena(),
+            turn: Nut.PLAYER_1,
+            hoveredColumn: -1,
+            isPlaying: true,
+            player1: 21,
+            player2: 21,
+            winner: undefined
+        })
     }
 
     handleClick = (index: number) => {
@@ -24,8 +37,7 @@ class Arena extends Component {
                 this.setState({ player2: player2 - 1 })
             }
             if (arena.hasWon(index)) {
-                this.setState({ isPlaying: false })
-                console.log('Won')
+                this.setState({ isPlaying: false, winner: turn })
             } else {
                 this.changeTurn()
                 this.setState({ arena: { ...arena }, hoveredColumn: arena.columnIsFull(index) ? -1 : this.state.hoveredColumn})
@@ -46,6 +58,7 @@ class Arena extends Component {
     render() {
         return (
             <React.Fragment>
+                {!this.state.isPlaying && this.showWinner()}
                 <div className='container' style={{height: '60vh', width: '50%'}}>
                     <div className="row b" style={{height: '100%'}}>
                         { _.range(0, 7).map(index => this.getColumn(index)) }
@@ -97,6 +110,15 @@ class Arena extends Component {
     changeTurn = () => {
         const { turn } = this.state
         this.setState({ turn: turn === Nut.PLAYER_1 ? Nut.PLAYER_2 : Nut.PLAYER_1 })
+    }
+
+    showWinner = () => {
+        return (
+            <div className="winner-box card">
+                <h2>{ this.state.winner === Nut.PLAYER_1 ? 'Player1 has won' : this.state.winner === Nut.PLAYER_2 ? 'Player2 has won' : 'Draw'}</h2>
+                <button className='btn-secondary play-again' onClick={ this.playAgain }>Play again</button>
+            </div>
+        )
     }
 }
 

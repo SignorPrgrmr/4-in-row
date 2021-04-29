@@ -20,9 +20,8 @@ export class Arena {
 
     hasWon = (index: number) => {
         let y = -1
-        while (this.arena[index][y + 1] !== Nut.EMPTY)
+        while (this.arena[index][y + 1] !== Nut.EMPTY && y < 5)
             y++
-        console.log(y)
         return this.verticalPosition(index, y) || this.horizontalPosition(index, y) ||
             this.obliqueRightPosition(index, y) || this.obliqueLeftPosition(index, y)
     }
@@ -33,12 +32,14 @@ export class Arena {
     }
 
     private horizontalPosition(x: number, y: number) {
+        console.log(x, y)
         let rightCounter = 0
         while (this.arena[x + rightCounter + 1] && this.arena[x][y] === this.arena[x + rightCounter + 1][y])
             rightCounter++
         let leftCounter = 0
         while (this.arena[x - leftCounter - 1] && this.arena[x][y] === this.arena[x - leftCounter - 1][y])
             leftCounter++
+        console.log(rightCounter, leftCounter)
         return leftCounter + rightCounter + 1 >= 4
     }
 
@@ -71,5 +72,4 @@ export class Arena {
         this.playerOneNuts = 0
         this.playerTwoNuts = 0
     }
-
 }

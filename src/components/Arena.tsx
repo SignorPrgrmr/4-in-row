@@ -81,7 +81,7 @@ class Arena extends Component {
             <div key={index} className={'col ' + (this.state.hoveredColumn === index ? 'col-hover' : '')}
                  onClick={ () => this.handleClick(index)} onMouseEnter={ () => this.handleMouseEnter(index) }
                  onMouseLeave={ this.handleMouseLeave }>
-                { this.state.arena.getColumn(index).map((nut, index) => this.getCell(nut, index))}
+                { this.state.arena.getColumn(index).reverse().map((nut, index) => this.getCell(nut, index))}
             </div>
         )
     }

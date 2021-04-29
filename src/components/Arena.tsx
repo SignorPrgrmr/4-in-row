@@ -14,6 +14,8 @@ class Arena extends Component {
         if (!this.state.arena.columnIsFull(index)) {
             const { arena } = this.state
             arena.push(this.state.turn, index)
+            if (arena.hasWon(index))
+                console.log('Utde')
             this.changeTurn()
             this.setState({ arena: { ...arena }, hoveredColumn: arena.columnIsFull(index) ? -1 : this.state.hoveredColumn})
         }
